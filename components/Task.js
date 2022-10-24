@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
+import { themeColour, BackgroundColour } from "../constants";
+
 const Task = (props) => {
   return (
     <View style={styles.item}>
@@ -15,7 +17,7 @@ const Task = (props) => {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: "#FFF",
+    backgroundColor: BackgroundColour,
     padding: 15,
     borderRadius: 10,
     flexDirection: "row",
@@ -31,18 +33,19 @@ const styles = StyleSheet.create({
   square: {
     width: 24,
     height: 24,
-    backgroundColor: "#55BCF6",
+    backgroundColor: themeColour,
     opacity: 0.4,
     borderRadius: 5,
     marginRight: 15,
   },
   itemText: {
     maxWidth: "80%",
+    color: "#FFF",
   },
   circular: {
     width: 12,
     height: 12,
-    borderColor: "#55BCF6",
+    borderColor: themeColour,
     borderWidth: 2,
     borderRadius: 5,
   },

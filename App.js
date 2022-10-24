@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
+  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -9,6 +10,7 @@ import {
   View,
 } from "react-native";
 
+import { themeColour, BackgroundColour } from "./constants";
 import Task from "./components/Task";
 
 export default function App() {
@@ -16,7 +18,7 @@ export default function App() {
   const [taskItems, setTaskItems] = useState([]);
 
   const handleAddTask = () => {
-    Keyboard.dismiss();
+    // Keyboard.dismiss();
     if (task) setTaskItems([...taskItems, task]);
     setTask(null);
   };
@@ -29,8 +31,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar />
       <View style={styles.taskWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
+        <Text style={styles.sectionTitle}>Today's tasks 👌</Text>
         <View style={styles.items}>
           {taskItems.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => completeTask(index)}>
@@ -47,13 +50,15 @@ export default function App() {
       >
         <TextInput
           style={styles.input}
-          placeholder={"write a task"}
+          placeholder={"Add a task 📝"}
+          placeholderTextColor="#FFF"
+          cursorColor="#FFF"
           value={task}
           onChangeText={(text) => setTask(text)}
         />
         <TouchableOpacity onPress={() => handleAddTask()}>
           <View style={styles.addWraper}>
-            <Text>+</Text>
+            <Text style={styles.addText}>+</Text>
           </View>
         </TouchableOpacity>
       </KeyboardAvoidingView>
@@ -64,22 +69,23 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E8EAED",
+    backgroundColor: "#181724",
   },
   taskWrapper: {
-    paddingTop: 80,
+    paddingTop: 40,
     paddingHorizontal: 20,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: "bold",
+    color: "#FFF",
   },
   items: {
-    marginTop: 30,
+    marginTop: 40,
   },
   writeTaskWrapper: {
     position: "absolute",
-    bottom: 60,
+    bottom: 30,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -88,20 +94,24 @@ const styles = StyleSheet.create({
   input: {
     padding: 15,
     paddingHorizontal: 15,
-    backgroundColor: "#fff",
+    backgroundColor: BackgroundColour,
+    color: "#FFF",
     borderRadius: 60,
-    borderColor: "#C0C0C0",
+    borderColor: themeColour,
     borderWidth: 1,
-    width: 250,
+    width: 270,
   },
   addWraper: {
     width: 60,
     height: 60,
-    backgroundColor: "#FFF",
+    backgroundColor: BackgroundColour,
     borderRadius: 60,
-    borderColor: "#C0C0C0",
+    borderColor: themeColour,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  addText: {
+    color: "#FFF",
   },
 });
