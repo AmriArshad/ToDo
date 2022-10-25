@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   Keyboard,
   KeyboardAvoidingView,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -34,13 +35,13 @@ export default function App() {
       <StatusBar />
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks 👌</Text>
-        <View style={styles.items}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.items}>
           {taskItems.map((item, index) => (
             <TouchableOpacity key={index} onPress={() => completeTask(index)}>
               <Task text={item} />
             </TouchableOpacity>
           ))}
-        </View>
+        </ScrollView>
       </View>
 
       {/* Write a Task */}
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
   },
   items: {
     marginTop: 40,
+    height: "70%",
   },
   writeTaskWrapper: {
     position: "absolute",
