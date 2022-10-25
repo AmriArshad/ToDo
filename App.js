@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 15,
     paddingHorizontal: 15,
+    marginLeft: 5,
     backgroundColor: componentColour,
     color: "#FFF",
     borderRadius: 60,
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
   addWraper: {
     width: 60,
     height: 60,
+    marginRight: 5,
     backgroundColor: componentColour,
     borderRadius: 60,
     borderColor: themeColour,
