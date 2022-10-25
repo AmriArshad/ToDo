@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 
-import { themeColour, BackgroundColour } from "./constants";
+import { themeColour, backgroundColour, componentColour } from "./constants";
 import Task from "./components/Task";
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
+      <StatusBar backgroundColor={backgroundColour} />
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks 👌</Text>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.items}>
@@ -70,7 +70,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#181724",
+    backgroundColor: backgroundColour,
   },
   taskWrapper: {
     paddingTop: 40,
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   input: {
     padding: 15,
     paddingHorizontal: 15,
-    backgroundColor: BackgroundColour,
+    backgroundColor: componentColour,
     color: "#FFF",
     borderRadius: 60,
     borderColor: themeColour,
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   addWraper: {
     width: 60,
     height: 60,
-    backgroundColor: BackgroundColour,
+    backgroundColor: componentColour,
     borderRadius: 60,
     borderColor: themeColour,
     borderWidth: 1,

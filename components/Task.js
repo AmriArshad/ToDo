@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import { themeColour, BackgroundColour } from "../constants";
+import { themeColour, componentColour } from "../constants";
 
 const Task = (props) => {
   return (
@@ -17,7 +17,7 @@ const Task = (props) => {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: BackgroundColour,
+    backgroundColor: componentColour,
     padding: 15,
     borderRadius: 10,
     flexDirection: "row",
