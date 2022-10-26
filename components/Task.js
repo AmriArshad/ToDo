@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     flexWrap: "wrap",
+    width: "80%",
   },
   itemButtons: {
     flexDirection: "row",
