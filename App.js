@@ -50,9 +50,11 @@ export default function App() {
               />
             </View>
           ))}
-          <View style={styles.sectionTitleWrapper}>
-            <Text style={styles.sectionTitle}>Completed👌</Text>
-          </View>
+          {completedTasks.length !== 0 && (
+            <View style={styles.sectionTitleWrapper}>
+              <Text style={styles.sectionTitle}>Completed👌</Text>
+            </View>
+          )}
           {completedTasks.map((item, index) => (
             <View key={index}>
               <Task
