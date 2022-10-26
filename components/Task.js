@@ -53,12 +53,14 @@ const Task = ({
     <View style={styles.item}>
       <View style={styles.itemLeft}>
         <View style={styles.circular}></View>
-        <Text style={styles.itemText}>{text}</Text>
+        <Text style={[styles.itemText, checked ? styles.checkedItemText : ""]}>
+          {text}
+        </Text>
         {/* <TextInput style={styles.itemText} value={text} /> */}
       </View>
       <View style={styles.itemButtons}>
         <TouchableOpacity
-          style={styles.square}
+          style={[styles.square, checked ? styles.checkedSquare : ""]}
           onPress={() => checkHandler(index)}
         ></TouchableOpacity>
         {checked && (
@@ -102,6 +104,10 @@ const styles = StyleSheet.create({
     opacity: 0.4,
     borderRadius: 5,
   },
+  checkedSquare: {
+    backgroundColor: "#FFF",
+    opacity: 0.2,
+  },
   trashWrapper: {
     marginLeft: 10,
   },
@@ -112,6 +118,10 @@ const styles = StyleSheet.create({
   itemText: {
     maxWidth: "80%",
     color: "#FFF",
+  },
+  checkedItemText: {
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
   },
   circular: {
     width: 12,
