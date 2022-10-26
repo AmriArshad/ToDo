@@ -1,16 +1,77 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 
 import { themeColour, componentColour } from "../constants";
 
-const Task = (props) => {
+const Task = ({
+  text,
+  index,
+  checked,
+  tasks,
+  setTasks,
+  completed,
+  setCompleted,
+}) => {
+  const checkHandler = (index) => {
+    if (!checked) checkTask(index);
+    else unCheckTask(index);
+  };
+
+  const checkTask = (index) => {
+    // add to completed tasks
+    setCompleted([...completed, tasks[index]]);
+
+    // remove from To Do tasks
+    let itemsCopy = [...tasks];
+    itemsCopy.splice(index, 1);
+    setTasks(itemsCopy);
+  };
+
+  const unCheckTask = (index) => {
+    // add to To Do tasks
+    setTasks([...tasks, completed[index]]);
+
+    // remove from completed tasks
+    let itemsCopy = [...completed];
+    itemsCopy.splice(index, 1);
+    setCompleted(itemsCopy);
+  };
+
+  const deleteTask = (index) => {
+    let itemsCopy = [...completed];
+    itemsCopy.splice(index, 1);
+    setCompleted(itemsCopy);
+  };
+
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
-        <View style={styles.square}></View>
-        <Text style={styles.itemText}>{props.text}</Text>
+        <View style={styles.circular}></View>
+        <Text style={styles.itemText}>{text}</Text>
+        {/* <TextInput style={styles.itemText} value={text} /> */}
       </View>
-      <View style={styles.circular}></View>
+      <View style={styles.itemButtons}>
+        <TouchableOpacity
+          style={styles.square}
+          onPress={() => checkHandler(index)}
+        ></TouchableOpacity>
+        {checked && (
+          <TouchableOpacity
+            style={styles.trashWrapper}
+            onPress={() => deleteTask(index)}
+          >
+            <View>
+              <Text style={styles.trash}>🗑️</Text>
+            </View>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
@@ -30,13 +91,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexWrap: "wrap",
   },
+  itemButtons: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   square: {
     width: 24,
     height: 24,
     backgroundColor: themeColour,
     opacity: 0.4,
     borderRadius: 5,
-    marginRight: 15,
+  },
+  trashWrapper: {
+    marginLeft: 10,
+  },
+  trash: {
+    marginBottom: 2,
+    fontSize: 20,
   },
   itemText: {
     maxWidth: "80%",
@@ -48,6 +119,7 @@ const styles = StyleSheet.create({
     borderColor: themeColour,
     borderWidth: 2,
     borderRadius: 5,
+    marginRight: 15,
   },
 });
 

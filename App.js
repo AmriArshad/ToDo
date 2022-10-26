@@ -17,6 +17,7 @@ import Task from "./components/Task";
 export default function App() {
   const [task, setTask] = useState();
   const [taskItems, setTaskItems] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
 
   const handleAddTask = () => {
     // Keyboard.dismiss();
@@ -24,22 +25,38 @@ export default function App() {
     setTask(null);
   };
 
-  const completeTask = (index) => {
-    let itemsCopy = [...taskItems];
-    itemsCopy.splice(index, 1);
-    setTaskItems(itemsCopy);
-  };
-
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor={backgroundColour} />
       <View style={styles.taskWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks 👌</Text>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.items}>
+          <Text style={styles.sectionTitle}>To Do ✍️</Text>
           {taskItems.map((item, index) => (
-            <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-              <Task text={item} />
-            </TouchableOpacity>
+            <View key={index}>
+              <Task
+                text={item}
+                index={index}
+                checked={false}
+                tasks={taskItems}
+                setTasks={setTaskItems}
+                completed={completedTasks}
+                setCompleted={setCompletedTasks}
+              />
+            </View>
+          ))}
+          <Text style={styles.sectionTitle}>Completed👌</Text>
+          {completedTasks.map((item, index) => (
+            <View key={index}>
+              <Task
+                text={item}
+                index={index}
+                checked={true}
+                tasks={taskItems}
+                setTasks={setTaskItems}
+                completed={completedTasks}
+                setCompleted={setCompletedTasks}
+              />
+            </View>
           ))}
         </ScrollView>
       </View>
@@ -77,6 +94,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   sectionTitle: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#FFF",
+    paddingBottom: 20,
+  },
+  completedTitle: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#FFF",
