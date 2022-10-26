@@ -50,7 +50,7 @@ const Task = ({
   };
 
   return (
-    <View style={styles.item}>
+    <View style={[styles.item, checked ? styles.checkedItem : ""]}>
       <View style={styles.itemLeft}>
         <View style={styles.circular}></View>
         <Text style={[styles.itemText, checked ? styles.checkedItemText : ""]}>
@@ -88,6 +88,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: 20,
   },
+  checkedItem: {
+    opacity: 0.6,
+  },
   itemLeft: {
     flexDirection: "row",
     alignItems: "center",
@@ -106,7 +109,7 @@ const styles = StyleSheet.create({
   },
   checkedSquare: {
     backgroundColor: "#FFF",
-    opacity: 0.2,
+    opacity: 0.3,
   },
   trashWrapper: {
     marginLeft: 10,
