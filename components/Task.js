@@ -49,14 +49,29 @@ const Task = ({
     setCompleted(itemsCopy);
   };
 
+  const updateTask = (newText) => {
+    if (checked) {
+      let itemsCopy = [...completed];
+      itemsCopy[index] = newText;
+      setCompleted(itemsCopy);
+    } else {
+      let itemsCopy = [...tasks];
+      itemsCopy[index] = newText;
+      setTasks(itemsCopy);
+    }
+  };
+
   return (
     <View style={[styles.item, checked ? styles.checkedItem : ""]}>
       <View style={styles.itemLeft}>
         <View style={styles.circular}></View>
-        <Text style={[styles.itemText, checked ? styles.checkedItemText : ""]}>
-          {text}
-        </Text>
-        {/* <TextInput style={styles.itemText} value={text} /> */}
+        <TextInput
+          style={[styles.itemText, checked ? styles.checkedItemText : ""]}
+          cursorColor="#FFF"
+          multiline={true}
+          value={text}
+          onChangeText={(text) => updateTask(text)}
+        />
       </View>
       <View style={styles.itemButtons}>
         <TouchableOpacity
