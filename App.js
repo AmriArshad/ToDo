@@ -29,8 +29,14 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar backgroundColor={backgroundColour} />
       <View style={styles.taskWrapper}>
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.items}>
-          <Text style={styles.sectionTitle}>To Do ✍️</Text>
+        <ScrollView
+          stickyHeaderIndices={[0, taskItems.length + 1]}
+          showsVerticalScrollIndicator={false}
+          style={styles.items}
+        >
+          <View style={styles.sectionTitleWrapper}>
+            <Text style={[styles.sectionTitle]}>To Do ✍️</Text>
+          </View>
           {taskItems.map((item, index) => (
             <View key={index}>
               <Task
@@ -44,7 +50,9 @@ export default function App() {
               />
             </View>
           ))}
-          <Text style={styles.sectionTitle}>Completed👌</Text>
+          <View style={styles.sectionTitleWrapper}>
+            <Text style={styles.sectionTitle}>Completed👌</Text>
+          </View>
           {completedTasks.map((item, index) => (
             <View key={index}>
               <Task
@@ -93,6 +101,9 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     paddingHorizontal: 20,
   },
+  sectionTitleWrapper: {
+    backgroundColor: backgroundColour,
+  },
   sectionTitle: {
     fontSize: 24,
     fontWeight: "bold",
@@ -105,8 +116,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   items: {
-    marginTop: 40,
-    height: "70%",
+    height: "80%",
   },
   writeTaskWrapper: {
     position: "absolute",
